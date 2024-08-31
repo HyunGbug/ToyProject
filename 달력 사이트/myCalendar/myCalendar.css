@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap');
+    body {
+        overflow: hidden;
+        padding: 30px;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;/*아이템을 수평 방향 가운데로*/
+        align-items: center;
+        background-size: cover;
+        min-height: 100vh; /* 최소 높이를 화면 높이와 같도록 설정합니다. */ 
+    }
+
+    .header {
+    display: flex;
+    justify-content: center;/*아이템 주 축을 따라 가운데 정렬*/
+    gap: 80px; /* 버튼 간격 조정 */
+    margin-bottom: -10px; /* 헤더와 달력 간격 조정 */
+    margin-top: 20px;
+    }
+
+    .time{
+        display: flex;
+        align-items: center; /* header와 time 요소를 수직 정렬하기 위해 추가 */
+    }
+    
+    .calendar {
+    border-collapse: collapse;
+    margin-top: 20px;
+    width: 100%;
+    }
+
+    .calendar th, .calendar td {
+    padding: 30px 50px;/*상하 좌우*/
+    font-size: 18px;
+    text-align: center;
+    }
+    .calendar td {
+    text-align: center; /* 가운데 정렬 */
+    vertical-align: middle; /* 수직 가운데 정렬 */
+    line-height: 30px; /* 텍스트 수직 가운데 정렬을 위한 높이와 동일하게 설정 */
+    
+    }
+
+    .calendar th {
+    background-color: rgba(254, 252, 254, 0.502);
+    padding: 10px;
+    font-size: 15px;
+    }
+
+    td:hover {
+    background-color: #faefef56;
+    }
+    
+
+    .calendar th:first-child, .calendar td:nth-child(1) {
+    color: hsl(0, 100%, 55%);
+    }
+
+    td:last-child, th:last-child {
+    color: rgba(0, 80, 239, 0.813);
+    }
+
+
+    .next-btn, .prev-btn, .month-name {
+    cursor: pointer;
+    }
+
+    .next-btn, .prev-btn {
+    background-color: rgba(195, 195, 195, 0);
+    color: rgb(0, 0, 0);
+    padding: 8px 8px; /* 버튼 크기 및 여백 조정 */
+    border: none;
+    cursor: pointer;
+    }
+
+    .prev-btn:hover, .next-btn:hover {
+    color: white;
+
+    }
+    .month-name {
+    font-family: "East Sea Dokdo", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    color: rgba(255, 255, 255, 0.833);
+    }
+    .month-name:hover {
+    color: rgba(255, 7, 7, 0.575);
+    } 
+
+    .datetime-label {
+    border-bottom: 3px solid rgba(12, 11, 11, 0.653);
+    color: rgb(255, 255, 255);
+    width: max-content; 
+    text-align: center;
+    margin-top: 20px; 
+    font-size: 20px; 
+    }
+
+    .datetime {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.281);
+    color: rgb(255, 255, 255);
+    width: 240px; 
+    margin-top: 10px; 
+    }
+
+    .month-select-container {
+    display: none;
+    position: absolute;
+    top: 110px;
+    padding: 10px;
+    z-index: 1;
+    margin-left: 330px; 
+    margin-top: 45px; 
+
+    }
+
+    .month-select {
+    /* width: 20px;  너무 칸이 작아서 월이 잘려서 나옴*/
+    padding: 5px;
+    color: rgba(30, 31, 32, 0.817);
+    background-color: rgba(245, 245, 245, 0.687);
+    }
+    select option {
+    background-color: rgba(212, 212, 184, 0.703); /* 옵션의 배경색 변경 */
+    }
+
+    td.holiday, td.special-day{
+    color: rgb(254, 44, 44);
+    /* font-size: 13px; */
+    }
+    .today{
+        background-color: rgba(233, 150, 122, 0.689);
+    }
+    .text {
+        margin-left: 10px; /* 추가 텍스트와 간격 조정 */
+        color: #fff; /* 추가 텍스트 색상 설정 */
+        font-size: 16px; /* 추가 텍스트 크기 설정 */
+    }

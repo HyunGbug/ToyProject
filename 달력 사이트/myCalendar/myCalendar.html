@@ -1,0 +1,43 @@
+﻿    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Calendar</title>
+    <link rel = "stylesheet" href = "myCalendar.css">
+    </head>
+    <body>
+    <div class="header">
+        <button class="prev-btn" onclick="changeMonth(-1)">&#9664;</button>
+        <span class="month-name" onclick="toggleMonthSelect()"></span>
+        <button class="next-btn" onclick="changeMonth(1)">&#9654;</button>
+    </div>
+        <label class="datetime-label" for="datetime">Now ᵈʕ ᵔⰙᵔ ʔᵇ</label>
+        <span class="text"></span>
+        <input type="datetime-local" class="datetime" disabled><!--입력할 수 없도록 disabled-->
+    
+
+    <div class="month-select-container">
+        <label for="month-select-label"></label>
+        <select class="month-select" onchange="changeMonthSelect(this.value)">
+            <option value="0">1월</option>
+            <option value="1">2월</option>
+            <option value="2">3월</option>
+            <option value="3">4월</option>
+            <option value="4">5월</option>
+            <option value="5">6월</option>
+            <option value="6">7월</option>
+            <option value="7">8월</option>
+            <option value="8">9월</option>
+            <option value="9">10월</option>
+            <option value="10">11월</option>
+            <option value="11">12월</option>
+        </select>
+    </div>
+    <div class="calendar-container">
+    <table class="calendar"></table>
+    </div>
+    <script src = "myCalendar.js"></script>
+    </body>
+    </html>
