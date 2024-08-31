@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission: Impossible </title>
+  <link href="img/homeIcon.jpg" rel="icon" type="jpg/png">
+
+  <link rel="stylesheet" href="css/common.css">
+
+  <style>
+    #videoPlayer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    #myVideo {
+      display: none;
+    }
+
+    .wrap {
+      display: fixed;
+      margin-top: 8px;
+    }
+
+    #trailerBtn {
+      width: 130px;
+      height: 35px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 500;
+      color: #000;
+      background-color: #61616183;
+      color: rgb(205, 203, 203);
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.212);
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+      outline: none;
+    }
+
+    #trailerBtn:hover {
+      background-color: #5b5a5c;
+      box-shadow: 0px 15px 20px rgba(148, 159, 155, 0.4);
+      color: #fff;
+      transform: translateY(-7px);
+    }
+
+
+
+
+
+    /******* Common Element CSS End *********/
+
+    /* -------- title style ------- */
+    .line-title {
+      position: relative;
+      width: 400px;
+    }
+
+    .line-title::before,
+    .line-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      border-radius: 2px;
+
+    }
+
+    .line-title::before {
+      width: 100%;
+      background: #f2f2f2;
+
+    }
+
+    .line-title::after {
+      width: 32px;
+      background: #e73700;
+
+    }
+
+    /******* Middle section CSS Start ******/
+    /* -------- Landing page ------- */
+
+    .series-section .swiffy-slider .slider-container {
+      margin: 40px 0;
+      display: flex;
+      display: -webkit-flex;
+    }
+
+    .series-section .item {
+      /* margin: 0 30px 60px; */
+      width: 350px;
+      height: 420px;
+      display: flex;
+      display: -webkit-flex;
+      align-items: flex-end;
+      -webkit-align-items: flex-end;
+      background: #343434 no-repeat center center / cover;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.4s ease-in-out;
+      -webkit-transition: all 0.4s ease-in-out;
+      cursor: pointer;
+    }
+
+    .series-section .item:after {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+    }
+
+    .series-section .item-desc {
+      padding: 0 24px 12px;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      transform: translateY(calc(100% - 54px));
+      -webkit-transform: translateY(calc(100% - 54px));
+      transition: all 0.4s ease-in-out;
+      -webkit-transition: all 0.4s ease-in-out;
+    }
+
+    .series-section .item.active .item-desc {
+      transform: none;
+      -webkit-transform: none;
+    }
+
+    /* .series-section .item-desc p {
+      opacity: 0;
+      -webkit-transform: translateY(32px);
+      transform: translateY(32px);
+      transition: all 0.4s ease-in-out 0.2s;
+      -webkit-transition: all 0.4s ease-in-out 0.2s;
+    } */
+
+    .series-section .item.active .item-desc p {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+
+    .series-section .slider-container {
+      margin-top: -20px;
+      position: relative;
+      z-index: 5;
+    }
+
+    /******** Middle section CSS End *******/
+
+    /* -------- Landing page ------- */
+    .series-section {
+      padding: 50px 30px 40px;
+    }
+
+    .series-section .item {
+      margin: 0 12px 60px;
+      width: 240px;
+      height: 330px;
+    }
+
+    .series-section .item.active {
+      width: 360px;
+    }
+
+    .series-section .item-desc {
+      transform: translateY(calc(100% - 42px));
+      -webkit-transform: translateY(calc(100% - 42px));
+    }
+
+
+    @media (max-width: 767px) {
+      body {
+        font-size: 14px;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+      }
+
+      h3 {
+        margin: 0 0 8px;
+        font-size: 19px;
+        line-height: 24px;
+      }
+
+      .line-title {
+        width: 250px;
+
+      }
+
+      /* -------- Landing page ------- */
+      .series-section {
+        padding: 30px 15px 20px;
+      }
+
+      .series-section .item {
+        margin: 0 10px 40px;
+        width: 240px;
+        height: 380px;
+      }
+
+
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+    <button id="trailerBtn">Watch trailer</button>
+  </div>
+
+  <video id="myVideo" width="100%" height="100%" controls>
+    <source src="movie/IntroMovie.mp4" type="video/mp4" alt="예고편 영상을 불러올 수 없네요.">
+    <source src="movie/IntroMovieCpy.webm" type="video/webm" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div id="title">
+    <div class="wrapper">
+      <div class="focus">
+        Mission: Impossible
+      </div>
+      <div class="mask">
+        <div class="text">Mission: Impossible</div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar">
+    <a href="Home.html">Home</a>
+    <a href="introduce.html">영화 소개</a>
+    <a href="cast.html">출연진</a>
+    <a href="self-introductionR.html">자기소개</a>
+  </div>
+
+  <section class="series-section">
+    <h2 class="line-title">Home: Mission Impossible Series</h2>
+
+    <div class="swiffy-slider">
+
+      <ul class="slider-container">
+
+        <div class="item active" style="background-image: url('img/poster1.jpg');" alt="포스터 사진">
+          <div class="item-desc">
+            <a href="https://www.youtube.com/watch?v=yOhb7u-MyAs" target="_blank" style="color: white; text-decoration: none;">
+            <h3>미션 임파서블 1 </h3>
+          </a>
+            <p>1996년 개봉 :<br> 갓 특수부대를 전역한 신참 요원 `이단 헌트`가 IMF의 배신자를 잡고 수석 현장 요원이 되는 이야기</p>
+          </div>
+        </div>
+
+        <div class="item active" style="background-image: url('img/poster2.jpg');" alt="포스터 사진">
+          <div class="item-desc">
+            <a href="https://www.youtube.com/watch?v=vIpqpRuGrq4" target="_blank" style="color: white; text-decoration: none;">
+            <h3>미션 임파서블 2</h3>
+            </a>
+            <p>2000년 개봉 :<br> 이단 헌트가 수석 현장 요원으로서 전직 IMF 요원에 맞서 자신의 첫 임무를 완수하는 이야기</p>
+          </div>
+        </div>
+
+        <div class="item active" style="background-image: url('img/poster3.jpg');" alt="포스터 사진">
+          <div class="item-desc">
+            <a href="https://www.youtube.com/watch?v=rl2bysiyltg" target="_blank" style="color: white; text-decoration: none;">
+            <h3>미션 임파서블 3</h3>
+            </a>
+            <p>2006년 개봉 :<br> 이단 헌트가 임무를 수행하면서, 자신의 애인이자 아내를 구출하는 이야기</p>
+          </div>
+        </div>
+
+        <div class="item active" style="background-image: url(img/poster4.jpg);" alt="포스터 사진">
+          <div class="item-desc">
+            <a href="https://www.youtube.com/watch?v=EDGYVFZxsXQ" target="_blank" style="color: white; text-decoration: none;">
+              <h3>4 [고스트 프로토콜]</h3>
+              </a>
+            <p>2011년 개봉 :<br> IMF가 와해된 와중 러시아 특수부대 출신 매드 사이언티스트로부터 제 3차 세계 대전을 막아낸 이야기</p>
+          </div>
+        </div>
+        <div class="item active" style="background-image: url(img/poster5.jpg);" alt="포스터 사진">
+          <div class="item-desc">
+            <a href="https://www.youtube.com/watch?v=cdEtgloxhso" target="_blank" style="color: white; text-decoration: none;">
+            <h3>5 [로그네이션]</h3>
+          </a>
+            <p>2015년 개봉 :<br> 테러 조직 신디케이트와 맞서 IMF를 지키고, CIA가 해체시킨 IMF를 재건하는 이야기</p>
+          </div>
+        </div>
+        <div class="item active" style="background-image: url(img/poster6.jpg);" alt="포스터 사진">
+          <div class="item-desc">
+            <a href="https://www.youtube.com/watch?v=gNJgMo14XWU" target="_blank" style="color: white; text-decoration: none;">
+            <h3>6 [폴 아웃]</h3>
+          </a>
+            <p>2018년 개봉 :<br> CIA로 부터 테러리스트로 의심받는 이단 헌트, 자신의 전 부인과 전 세계 인구 3/1을 위협할 핵 테러를 막아낸 이야기</p>
+          </div>
+        </div>
+        <div class="item active" style="background-image: url(img/poster7.jpg);" alt="포스터 사진">
+          <div class="item-desc">
+            <a href="https://www.youtube.com/watch?v=2m1drlOZSDw" target="_blank" style="color: white; text-decoration: none;">
+            <h3>7 [데드 레코닝]</h3>
+          </a>
+            <p>2023년 개봉 :<br> 이단 헌트가 미 정부에게 배신자로 낙인 찍히면서까지 인공지능 엔티티를 막기 위해 소스코드인 열쇠를 회수하는 이야기</p>
+          </div>
+        </div>
+      </section>
+  <div class="footer">
+    <p>© 2024 Mission: Impossible 영화 소개 웹사이트</p>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      var video = document.getElementById('myVideo');
+      var title = document.getElementById('title');
+      var footer = document.querySelector('.footer');
+      var playButton = document.getElementById('trailerBtn');
+      var section = document.querySelector('.series-section');
+
+
+      video.addEventListener('ended', function () {
+        console.log('영상 끝남')
+        video.style.display = 'none';
+        title.style.display = 'block';
+        footer.style.display = 'block';
+        playButton.style.display = 'block';
+        section.style.display = 'block';
+      }, { once: true });
+
+
+      playButton.addEventListener('click', function () {
+        video.play();
+        console.log('버튼 클릭!')
+        video.style.display = 'block';
+        playButton.style.display = 'none';
+        title.style.display = 'none';
+        footer.style.display = 'none';
+        section.style.display = 'none';
+      });
+
+    });
+
+  </script>
+
+</body>
+
+</html>

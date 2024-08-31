@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Casting</title>
+  <link href="img/castIcon.jpg" rel="icon" type="jpg/png">
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    .wrap {
+      display: fixed;
+      text-align: center;
+    }
+
+    #nowFile {
+      margin-top: 0;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 130px;
+      height: 35px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 500;
+      background-color: #61616183;
+      color: rgb(205, 203, 203);
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.212);
+      transition: all 0.3s ease 0s;
+      outline: none;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-family: 'Montserrat';
+      font-weight: normal;
+      color: #928d8d;
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .cast {
+      width: 90%;
+      margin: 10px auto;
+      margin-bottom: 40px;
+      max-width: 80rem;
+    }
+
+    .cols {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+
+    .col {
+      width: calc(25% - 2rem);
+      margin: 1rem;
+      cursor: pointer;
+    }
+
+    .container {
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      -webkit-perspective: 1000px;
+      perspective: 1000px;
+    }
+
+    .front,
+    .back {
+      background-size: cover;
+      box-shadow: 0 4px 8px 0 rgba(168, 168, 168, 0.4);
+      border-radius: 10px;
+      background-position: center;
+      -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+      -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      text-align: center;
+      min-height: 280px;
+      height: auto;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1.0rem;
+    }
+
+    .back {
+      background: #cedce7;
+      background: -webkit-linear-gradient(45deg, #cedce7 0%, #55595b 100%);
+      background: -o-linear-gradient(45deg, #cedce7 0%, #404243 100%);
+      background: linear-gradient(45deg, #cedce7 0%, #5a5b5c 100%);
+    }
+
+    .front:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      content: '';
+      display: block;
+      opacity: .6;
+      background-color: #00000027;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 10px;
+    }
+
+    .container:hover .front,
+    .container:hover .back {
+      -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+      -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+
+    .back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .inner {
+      -webkit-transform: translateY(-50%) translateZ(60px) scale(0.94);
+      transform: translateY(-50%) translateZ(60px) scale(0.94);
+      top: 50%;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      padding: 2rem;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      outline: 1px solid transparent;
+      -webkit-perspective: inherit;
+      perspective: inherit;
+      z-index: 2;
+    }
+
+    .container .back {
+      -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+    }
+
+    .container .front {
+      -webkit-transform: rotateY(0deg);
+      transform: rotateY(0deg);
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+    }
+
+    .container:hover .back {
+      -webkit-transform: rotateY(0deg);
+      transform: rotateY(0deg);
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+    }
+
+    .container:hover .front {
+      -webkit-transform: rotateY(-180deg);
+      transform: rotateY(-180deg);
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+    }
+
+    .front .inner p {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .front .inner p:after {
+      content: '';
+      width: 4rem;
+      height: 2px;
+      position: absolute;
+      background: #C6D4DF;
+      display: block;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      bottom: -.75rem;
+    }
+
+    .front .inner span {
+      color: rgba(255, 255, 255, 0.7);
+      font-family: 'Montserrat';
+      font-weight: 300;
+    }
+
+    @media screen and (max-width: 64rem) {
+      .col {
+        width: calc(33.333333% - 2rem);
+      }
+    }
+
+    @media screen and (max-width: 48rem) {
+      .col {
+        width: calc(50% - 2rem);
+      }
+    }
+
+    @media screen and (max-width: 32rem) {
+      .col {
+        width: 100%;
+        margin: 0 0 2rem 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <p id="nowFile">출연진</p>
+  </div>
+  <div id="title">
+    <div class="wrapper">
+      <div class="focus">
+        Mission: Impossible
+      </div>
+      <div class="mask">
+        <div class="text">Mission: Impossible</div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar">
+    <a href="Home.html">Home</a>
+    <a href="introduce.html">영화 소개</a>
+    <a href="cast.html">출연진</a>
+    <a href="self-introductionR.html">자기소개</a>
+  </div>
+  <div class="cast">
+    <h1>Characters & Actors</h1>
+    <div class="cols">
+      <div class="col" ontouchstart="this.classList.toggle('hover');">
+        <div class="container">
+          <div class="front" style="background-image: url(img/castTomCruse.png)" alt="톰 크루즈 사진">
+            <div class="inner">
+              <p>Tom Cruise</p>
+              <span>Ethan Hunt</span>
+            </div>
+          </div>
+          <div class="back">
+            <div class="inner">
+              <p> 미 육군 특수부대 제75레인저연대 직할 수색중대 대위 출신의 IMF 정예 특수공작원으로, 시리즈 내에서 불가능한 임무를 수행하는 캐릭터</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col" ontouchstart="this.classList.toggle('hover');">
+        <div class="container">
+          <div class="front" style="background-image: url(img/castSimon.png)" alt="출연진 사진">
+            <div class="inner">
+              <p>Simon Pegg</p>
+              <span>Benjamin Dunn</span>
+            </div>
+          </div>
+          <div class="back">
+            <div class="inner">
+              <p>이단 헌트의 충실한 동료로, 그는 전자 기술 분야의 전문가로서 시리즈 내내 필수적인 장치와 코믹함을 제공하는 캐릭터</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col" ontouchstart="this.classList.toggle('hover');">
+        <div class="container">
+          <div class="front" style="background-image: url(img/castEmma.png)" alt="출연진 사진">
+            <div class="inner">
+              <p>Emmanuelle Beart</p>
+              <span>Claire Phelps</span>
+            </div>
+          </div>
+          <div class="back">
+            <div class="inner">
+              <p>시즌 1에서 이단 헌트의 파트너로 등장하며, 노크 리스트를 찾는 임무를 수행하는 캐릭터</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col" ontouchstart="this.classList.toggle('hover');">
+        <div class="container">
+          <div class="front" style="background-image: url(img/castThandie.png)" alt="출연진 사진">
+            <div class="inner">
+              <p>Thandie Newton</p>
+              <span>Nia Nordhoff</span>
+            </div>
+          </div>
+          <div class="back">
+            <div class="inner">
+              <p>시즌 2에서 3개국 이상의 경찰국에서 추적받고 있는 절도범으로, 이번 작전의 팀원으로 영입되고 이단 헌트와 사랑에 캐릭터</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col" ontouchstart="this.classList.toggle('hover');">
+        <div class="container">
+          <div class="front" style="background-image: url(img/castMishelle.png)" alt="출연진 사진">
+            <div class="inner">
+              <p>Mishelle Lynn Monaghan</p>
+              <span>Julia Meade</span>
+            </div>
+          </div>
+          <div class="back">
+            <div class="inner">
+              <p>시즌 3에서 이단 헌트의 약혼녀로, 반드시 지켜야 할 소중한 사람으로 묘사되는 캐릭터</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" ontouchstart="this.classList.toggle('hover');">
+        <div class="container">
+          <div class="front" style="background-image: url(img/castPaula.png)" alt="출연진 사진">
+            <div class="inner">
+              <p>Paula Maxine Patton</p>
+              <span>Jane Carter</span>
+            </div>
+          </div>
+          <div class="back">
+            <div class="inner">
+              <p>시즌 4에서 이단 헌트의 팀원으로 활약하는 강인한 캐릭터로, 이단 헌트와 함께 여러 위험한 임무를 수행한다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col" ontouchstart="this.classList.toggle('hover');">
+        <div class="container">
+          <div class="front" style="background-image: url(img/castRebecca.png)" alt="출연진 사진">
+            <div class="inner">
+              <p>Rebecca Ferguson</p>
+              <span>Ilsa Faust</span>
+            </div>
+          </div>
+          <div class="back">
+            <div class="inner">
+              <p>시즌 5, 6, 7에서 영국 첩보기관인 MI6의 요원으로 이중 스파이의 모습도 보여주는 미스터리한 캐릭터이며, 시리즈 중 최강의 요원이라고 할 수 있는 캐릭터</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col" ontouchstart="this.classList.toggle('hover');">
+        <div class="container">
+          <div class="front" style="background-image: url(img/castHayley.png)" alt="출연진 사진">
+            <div class="inner">
+              <p>Hayley Aywell</p>
+              <span>Grace</span>
+            </div>
+          </div>
+          <div class="back">
+            <div class="inner">
+              <p>시즌 7에서 전문적인 도둑으로, 이단 헌트의 임무에 휘말리게 되는 캐릭터</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer" style="margin-top: 30px;">
+    <p>© 2024 Mission: Impossible 영화 소개 웹사이트</p>
+  </div>
+</body>
+
+</html>

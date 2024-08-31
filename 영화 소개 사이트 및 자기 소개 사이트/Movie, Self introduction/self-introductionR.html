@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome~ My Page</title>
+    <link rel="icon" type="image/svg+xml" href="self-Img/introduction-favicon.svg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Shadows+Into+Light&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Nanum+Pen+Script&family=Shadows+Into+Light&display=swap"
+        rel="stylesheet">
+    <link href="https://webfontworld.github.io/utoHarbang/UtoHarBang.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            list-style-type: none;
+            text-decoration: none;
+        }
+
+        body {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            font-family: "Spoqa Han Sans Neo", "sans-serif";
+        }
+
+        body::before {
+            --line: color-mix(in lch, canvasText 25%, transparent);
+            --size: 30px;
+            content: '';
+            height: 400vw;
+            width: 100vw;
+            position: fixed;
+            background: linear-gradient(90deg,
+                    var(--line) 1px,
+                    transparent 1px var(--size)) 0 -5vmin / var(--size) var(--size),
+                linear-gradient(var(--line) 1px, transparent 1px var(--size)) 0 -5vmin / var(--size) var(--size);
+            mask: linear-gradient(-15deg, transparent 60%, rgb(106, 104, 104));
+            top: 0;
+            z-index: -1;
+        }
+
+        nav {
+            font-family: "Shadows Into Light", cursive;
+            width: 100%;
+            top: 0;
+            font-weight: 400;
+            font-size: 1.5em;
+            font-style: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #6a666660;
+            color: white;
+            position: fixed;
+            /* margin: 0 auto; */
+
+        }
+
+        nav ul {
+            padding: 0;
+            display: flex;
+
+        }
+
+        nav li {
+            padding: 0 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s ease;
+            margin-right: 20px;
+
+        }
+
+        nav ul li a:hover,
+        .active {
+            color: #ff69b4;
+            /* 호버 및 포커스 시 색상 변경 */
+        }
+
+        /* 로고 및 네비게이션 링크 스타일 */
+        .my-name {
+            font-family: "Shadows Into Light", cursive;
+            font-weight: 400;
+            font-style: normal;
+            margin: 0 auto;
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .bear-link {
+            color: black;
+            width: 48px;
+            margin-right: auto;
+            width: 48px;
+            display: grid;
+        }
+
+
+        .tooltip {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 6%;
+            transform: translateX(-50%);
+            background-color: #fa7cdfb8;
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .bear-link:hover .tooltip {
+            display: block;
+
+        }
+
+
+        section {
+            padding: 200px 20px;
+            margin-top: 80px;
+            border-radius: 8px;
+            background-color: #ffffff61;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
+        }
+
+        .contents {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            margin-top: 20px;
+            display: flex;
+        }
+
+        .image-slider img {
+            width: 700px;
+            height: 500px;
+            margin-right: 200px;
+            border-radius: 20px;
+        }
+
+        .text-content {
+            width: 50%;
+            font-size: 1.5rem;
+            background-color: rgba(255, 59, 59, 0.368);
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(56, 48, 48, 0.6);
+        }
+
+        .text-content p {
+            line-height: 2;
+        }
+
+        .slide {
+            display: none;
+        }
+
+
+
+        :is(a, button) {
+            outline-color: color-mix(in lch, canvasText, transparent 50%);
+        }
+
+        .title-logo {
+            font-size: 5.5rem;
+            text-align: left;
+            color: #fcedd8;
+            font-family: 'Niconne', cursive;
+            font-weight: 700;
+            text-shadow: 5px 5px 0px #eb452b,
+                10px 10px 0px #efa032,
+                15px 15px 0px #46b59b,
+                20px 20px 0px #017e7f,
+                25px 25px 0px #052939,
+                30px 30px 0px #c11a2b,
+                35px 35px 0px #c11a2b,
+                40px 40px 0px #c11a2b,
+                45px 45px 0px #c11a2b;
+            margin-bottom: 100px;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-pic {
+            border-radius: 50%;
+            width: 700px;
+            height: 700px;
+            margin-right: 300px;
+
+        }
+
+        .intro-section {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        .introText {
+            font-family: "Nanum Pen Script", cursive;
+            font-style: normal;
+            font-size: 5rem;
+        }
+
+        .balanceQuestion {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 50vh;
+        }
+        .balanceQuestion p{
+            font-family: 'UtoHarBang';
+            font-size: 60px;
+            /* margin-bottom: 3rem; */
+        }
+
+        .balanceQuestion img {
+            width: 700px;
+            height: 750px;
+            margin-right: 30px;
+            margin-top: 0;
+        }
+       
+       
+
+        /**
+         * Theming
+         * */
+        .theme {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            width: 60px;
+            aspect-ratio: 1;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+            background: transparent;
+            display: grid;
+            place-items: center;
+        }
+
+        .theme:is(:hover, :focus-visible) {
+            background-color: #ff69b4;
+        }
+
+        html.dark {
+            color-scheme: dark only;
+        }
+
+        html.light {
+            color-scheme: light only;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a class="bear-link">
+                <div class="tooltip">Enjoy it~~!!</div>
+                <svg class="w-9" viewBox="0 0 969 955" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="161.191" cy="320.191" r="133.191" stroke="currentColor" stroke-width="20"></circle>
+                    <circle cx="806.809" cy="320.191" r="133.191" stroke="currentColor" stroke-width="20"></circle>
+                    <circle cx="695.019" cy="587.733" r="31.4016" fill="currentColor"></circle>
+                    <circle cx="272.981" cy="587.733" r="31.4016" fill="currentColor"></circle>
+                    <path
+                        d="M564.388 712.083C564.388 743.994 526.035 779.911 483.372 779.911C440.709 779.911 402.356 743.994 402.356 712.083C402.356 680.173 440.709 664.353 483.372 664.353C526.035 664.353 564.388 680.173 564.388 712.083Z"
+                        fill="currentColor"></path>
+                    <rect x="310.42" y="448.31" width="343.468" height="51.4986" fill="#FF1E1E"></rect>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M745.643 288.24C815.368 344.185 854.539 432.623 854.539 511.741H614.938V454.652C614.938 433.113 597.477 415.652 575.938 415.652H388.37C366.831 415.652 349.37 433.113 349.37 454.652V511.741L110.949 511.741C110.949 432.623 150.12 344.185 219.845 288.24C289.57 232.295 384.138 200.865 482.744 200.865C581.35 200.865 675.918 232.295 745.643 288.24Z"
+                        fill="currentColor"></path>
+                </svg>
+            </a>
+            <span class="my-name">It's Hyun Ji 🍒</span>
+            <ul>
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#About-me">About Me</a></li>
+                <li><a href="#Love">What I Love</a></li>
+            </ul>
+
+            <div class="social-links">
+                <a href="https://www.instagram.com/g._.j2?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                    target="_blank" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 -4 32 32">
+                        <path
+                            d="M 11.46875 5 C 7.917969 5 5 7.914063 5 11.46875 L 5 20.53125 C 5 24.082031 7.914063 27 11.46875 27 L 20.53125 27 C 24.082031 27 27 24.085938 27 20.53125 L 27 11.46875 C 27 7.917969 24.085938 5 20.53125 5 Z M 11.46875 7 L 20.53125 7 C 23.003906 7 25 8.996094 25 11.46875 L 25 20.53125 C 25 23.003906 23.003906 25 20.53125 25 L 11.46875 25 C 8.996094 25 7 23.003906 7 20.53125 L 7 11.46875 C 7 8.996094 8.996094 7 11.46875 7 Z M 21.90625 9.1875 C 21.402344 9.1875 21 9.589844 21 10.09375 C 21 10.597656 21.402344 11 21.90625 11 C 22.410156 11 22.8125 10.597656 22.8125 10.09375 C 22.8125 9.589844 22.410156 9.1875 21.90625 9.1875 Z M 16 10 C 12.699219 10 10 12.699219 10 16 C 10 19.300781 12.699219 22 16 22 C 19.300781 22 22 19.300781 22 16 C 22 12.699219 19.300781 10 16 10 Z M 16 12 C 18.222656 12 20 13.777344 20 16 C 20 18.222656 18.222656 20 16 20 C 13.777344 20 12 18.222656 12 16 C 12 13.777344 13.777344 12 16 12 Z">
+                        </path>
+                    </svg>
+                    </svg></a>
+                <a href="https://velog.io/@ssogary1030/posts" target="_blank" class="social-icon"><svg
+                        xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 -8 32 32">
+                        <path
+                            d="M3 0C1.338 0 0 1.338 0 3v18c0 1.662 1.338 3 3 3h18c1.662 0 3-1.338 3-3V3c0-1.662-1.338-3-3-3H3Zm6.883 6.25c.63 0 1.005.3 1.125.9l1.463 8.303c.465-.615.846-1.133 1.146-1.553.465-.66.893-1.418 1.283-2.273.405-.855.608-1.62.608-2.295 0-.405-.113-.727-.338-.967-.21-.255-.608-.577-1.193-.967.6-.765 1.35-1.148 2.25-1.148.48 0 .878.143 1.193.428.33.285.494.704.494 1.26 0 .93-.39 2.093-1.17 3.488-.765 1.38-2.241 3.457-4.431 6.232l-2.227.156-1.711-9.628h-2.25V7.24c.6-.195 1.305-.406 2.115-.63.81-.24 1.358-.36 1.643-.36Z" />
+                        <path xmlns="http://www.w3.org/2000/svg"
+                            d="M3 0C1.338 0 0 1.338 0 3v18c0 1.662 1.338 3 3 3h18c1.662 0 3-1.338 3-3V3c0-1.662-1.338-3-3-3H3Zm6.883 6.25c.63 0 1.005.3 1.125.9l1.463 8.303c.465-.615.846-1.133 1.146-1.553.465-.66.893-1.418 1.283-2.273.405-.855.608-1.62.608-2.295 0-.405-.113-.727-.338-.967-.21-.255-.608-.577-1.193-.967.6-.765 1.35-1.148 2.25-1.148.48 0 .878.143 1.193.428.33.285.494.704.494 1.26 0 .93-.39 2.093-1.17 3.488-.765 1.38-2.241 3.457-4.431 6.232l-2.227.156-1.711-9.628h-2.25V7.24c.6-.195 1.305-.406 2.115-.63.81-.24 1.358-.36 1.643-.36Z" />
+                    </svg></a>
+                <a href="mailto:ssogary1030@gmail.com" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                        x="0px" y="0px" width="48" height="50" viewBox="4 -6 50 50">
+                        <path
+                            d="M 14 4 C 8.4886661 4 4 8.4886661 4 14 L 4 36 C 4 41.511334 8.4886661 46 14 46 L 36 46 C 41.511334 46 46 41.511334 46 36 L 46 14 C 46 8.4886661 41.511334 4 36 4 L 14 4 z M 13 16 L 37 16 C 37.18 16 37.349766 16.020312 37.509766 16.070312 L 27.679688 25.890625 C 26.199688 27.370625 23.790547 27.370625 22.310547 25.890625 L 12.490234 16.070312 C 12.650234 16.020312 12.82 16 13 16 z M 11.070312 17.490234 L 18.589844 25 L 11.070312 32.509766 C 11.020312 32.349766 11 32.18 11 32 L 11 18 C 11 17.82 11.020312 17.650234 11.070312 17.490234 z M 38.929688 17.490234 C 38.979688 17.650234 39 17.82 39 18 L 39 32 C 39 32.18 38.979687 32.349766 38.929688 32.509766 L 31.400391 25 L 38.929688 17.490234 z M 20 26.410156 L 20.890625 27.310547 C 22.020625 28.440547 23.510234 29 24.990234 29 C 26.480234 29 27.959844 28.440547 29.089844 27.310547 L 29.990234 26.410156 L 37.509766 33.929688 C 37.349766 33.979688 37.18 34 37 34 L 13 34 C 12.82 34 12.650234 33.979687 12.490234 33.929688 L 20 26.410156 z">
+                        </path>
+                    </svg></a>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <div class="contents">
+        <section id="Home">
+            <div class="title-logo">Home</div>
+            <div class="profile-container">
+                <img src="self-Img/mySelf.jpg" alt="Profile Picture" class="profile-pic">
+                <div class="intro-section">
+                    <p class="introText">
+                    <p>
+                </div>
+            </div>
+        </section>
+        <section id="About-me">
+            <div class="title-logo">About Me</div>
+            <div class="content">
+                <div class="image-slider">
+                    <img src="self-Img/child1.jpg" class="slide" alt="Image 1">
+                    <img src="self-Img/child2.jpg" class="slide" alt="Image 2">
+                    <img src="self-Img/child3.jpg" class="slide" alt="Image 3">
+                    <img src="self-Img/child4.jpg" class="slide" alt="Image 4">
+                    <img src="self-Img/child5.jpg" class="slide" alt="Image 5">
+                    <img src="self-Img/child6.jpg" class="slide" alt="Image 6">
+                    <img src="self-Img/child7.jpg" class="slide" alt="Image 7">
+                    <img src="self-Img/child8.jpg" class="slide" alt="Image 8">
+                    <img src="self-Img/child9.jpg" class="slide" alt="Image 9">
+                    <img src="self-Img/child10.jpg" class="slide" alt="Image 10">
+                    <img src="self-Img/child11.jpg" class="slide" alt="Image 11">
+                    <img src="self-Img/child12.jpg" class="slide" alt="Image 12">
+                    <img src="self-Img/child13.jpg" class="slide" alt="Image 13">
+                    <!-- 추가 이미지 -->
+                </div>
+                <div class="text-content">
+                    <p><strong>이름 :</strong> <span>정현지 (丁賢池)</span></p>
+                    <p><strong> 출생 년도 :</strong> <span>2001 / 10 / 30</span></p>
+                    <p><strong>가족 관계 :</strong> <span>1남 1녀 막내</span></p>
+                    <p><strong>별자리 :</strong> <span>전갈자리🦂</span></p>
+                    <p><strong>띠 :</strong> <span>뱀띠 🐍</span></p>
+                    <p><strong>키 :</strong> <span>166cm</span></p>
+                    <p><strong>몸무게 :</strong> <span>🤦‍♀️</span></p>
+                    <p><strong>전공 :</strong> <span>한국음악과</span></p>
+                    <p><strong>취미 :</strong> <span>취미 : 수영🏊, 사진찍기📷, 기타치기🎸, 술..🍺❤️</span></p>
+                    <p><strong>종교 :</strong> <span>기독교 호소인✝️</span></p>
+                    <p><strong>MBTI :</strong> <span>ISTP🎈</span></p>
+
+                    </p>
+                </div>
+        </section>
+        <section id="Love">
+            <div class="title-logo">What I Love~!!</div>
+            <div class="balanceQuestion">
+               <div class="showImage">
+                 <img id="balanceImage" src="self-Img/balance1.jpg" alt="바다 사진">
+                <img id="balabnceImage2" src="self-Img/balanceA2.jpg" alt="강아지와 사진" style="width: 700px; height: 750px;">
+                </div>
+                <p>산 보다 바다!! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 고양이 보다 강아지!!!</p>
+            </div>
+        </section>
+    </div>
+
+    <button class="theme" aria-pressed="true">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            class="w-6 h-6">
+            <defs>
+                <mask>
+                    <path fill="black" id="sun"
+                        d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+                </mask>
+            </defs>
+            <path fill-rule="evenodd"
+                d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
+                clip-rule="evenodd" />
+            <path
+                d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+        </svg>
+        <span class="sr-only"></span><br>Set theme</span>
+    </button>
+</body>
+
+</html>
+
+
+<script>
+
+
+    /**
+     * 테마 색 변경
+     * */
+    const toggle = document.querySelector('button.theme')
+
+    const switchTheme = () => {
+        const isDark = toggle.matches("[aria-pressed=true]") ? false : true;
+        toggle.setAttribute("aria-pressed", isDark);
+        document.documentElement.className = isDark ? 'light' : 'dark'
+    }
+
+    const handleToggle = () => {
+        if (!document.startViewTransition) {
+            console.info('Hey! Try this out in Chrome 111+')
+            switchTheme()
+        }
+        document.startViewTransition(switchTheme)
+    };
+
+    //네비게이션 바에서 현재 보고있는 페이지 표시
+    toggle.addEventListener('click', handleToggle);
+    var navLinks = document.querySelectorAll('nav ul li a');
+
+    for (var i = 0; i < navLinks.length; i++) {
+        navLinks[i].addEventListener('click', function () {
+            // 모든 링크에서 "active" 클래스 제거
+            for (var j = 0; j < navLinks.length; j++) {
+                navLinks[j].classList.remove('active');
+            }
+            // 클릭된 링크에 "active" 클래스 추가
+            this.classList.add('active');
+        });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("slide");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+
+    const $txt = document.querySelector(".introText");
+    const content = "안녕하세요 :) \n 개발 꿈나무 정현지 입니다.";
+    let contentIndex = 0;
+
+    // typing 함수
+    let typing = function () {
+        $txt.innerHTML += content[contentIndex];
+        contentIndex++;
+        if (content[contentIndex] === "\n") {
+            $txt.innerHTML += "<br />";
+            contentIndex++;
+        }
+        if (contentIndex > content.length) {
+            $txt.textContent = "";
+            contentIndex = 0;
+        }
+    };
+
+    // 0.2초간격으로 typing 함수 실행
+    setInterval(typing, 300);
+
+    // 밸런스 게임 사진
+    var images = ["self-Img/balance1.jpg", "self-Img/balance2.jpg", "self-Img/balance3.jpg"];
+    var index = 0;
+    var slideShowInterval = null;
+
+    function toggleSlideShow() {
+    index = (index + 1) % images.length; // 다음 이미지로 인덱스를 업데이트합니다.
+    document.getElementById('balanceImage').src = images[index]; // 이미지의 src 속성을 변경합니다.
+}
+
+setInterval(toggleSlideShow, 2000); // 2초마다 toggleSlideShow 함수를 실행합니다.
+</script>
+</body>
+
+</html>
